@@ -29,15 +29,16 @@ const consumer = (channel: Channel) => async (msg: ConsumeMessage | null): Promi
     await banco.query(`UPDATE public."News" SET "deletedAt"='${new Date().toISOString()}', "published"=false WHERE id = ${id};`);
 
     channel.ack(msg);
-    await banco.query(`SELECT id, title, subtitle, text, "createdAt", "updatedAt", "userId"
-    FROM public."News" where published=true and "deletedAt" != '1111-11-11' order by "updatedAt" desc`).then((res)=>{
+    await banco.query(`SELECT n.id, n.title, n.subtitle, n.text, n."createdAt", n."updatedAt", n."userId", u."nickname"
+                      FROM public."News" as n
+                      inner join "User" as u
+                      on n."userId" = u.id
+                      where n.published=true and n."deletedAt" != '1111-11-11' order by n."updatedAt" desc`).then((res)=>{
                             listaNews = []
                             res.rows.map((news)=>{
                                 listaNews.push(news)
                               })
                             })
-    //console.log(listaNews);                  
-
     await redisClient.del('news');
     await setRedis('news', JSON.stringify(listaNews));
   }

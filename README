@@ -1,0 +1,20 @@
+RABBITMQ QUEUES
+    news
+    newsUpdate
+    newsPublish
+    newsDelete
+    reactions
+    reactionsUpdate
+    comments
+    commentsUpdate
+    commentDelete
+    readers
+    authors
+    admin
+    usersUpdate
+    usersBlock
+    changePassword
+
+REDIS QUEUES
+   news
+   unauth_users 
