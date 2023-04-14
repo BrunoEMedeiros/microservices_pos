@@ -17,16 +17,16 @@ const consumer = (channel: Channel) => async (msg: ConsumeMessage | null): Promi
     if (msg) {
       // Display the received message
       listaEmails = [];
-      await banco.query(`SELECT email FROM "User"`).then((res)=>{
-        res.rows.map((email)=>{
-          listaEmails.push(email.email);
+      await banco.query(`select id from "User" where activated = true`).then((res)=>{
+        res.rows.map((id)=>{
+          listaEmails.push(id.id);
         });
       });
       //console.log(teste);
       console.log(listaEmails);
 
-      await redisClient.del('emails_test');
-      await setRedis('emails_test', JSON.stringify(listaEmails));
+      await redisClient.del('auth_users_test');
+      await setRedis('auth_users_test', JSON.stringify(listaEmails));
       channel.ack(msg)
     }
     else{
@@ -41,6 +41,6 @@ const connection: Connection = await client.connect("amqp://guest:guest@172.22.6
 // Create a channel
 const channel: Channel = await connection.createChannel()
 // Makes the queue available to the client
-await channel.assertQueue('emails')
+await channel.assertQueue('validate_activated')
 // Start the consumer
-await channel.consume('emails', consumer(channel));
+await channel.consume('validate_activated', consumer(channel));

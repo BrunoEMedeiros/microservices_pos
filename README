@@ -17,4 +17,9 @@ RABBITMQ QUEUES
 
 REDIS QUEUES
    news
+   auth_users_test
+   emails_test
    unauth_users 
+   auth_users
+   invalid_block
+   

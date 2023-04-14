@@ -52,7 +52,7 @@ const consumer = (channel: Channel) => async (msg: ConsumeMessage | null): Promi
               listaEmails.push(email.email);
           });
           //console.log(listaEmails);
-          await setRedis('emails', JSON.stringify(listaEmails));     
+          await setRedis('emails_test', JSON.stringify(listaEmails));     
           
           await banco.query(`SELECT id, name, email, nickname, birthday, password, role, activated, "createdAt", "updatedAt", "deletedAt"
                 FROM public."User" where activated = false;`).then((res)=>{
