@@ -3,7 +3,7 @@ import { promisify } from 'util';
 
 //configs
 export const redisClient = new Redis({
-    host: '172.22.67.77',
+    host: '172.22.169.247',
     port: 6379,
     username: "default", // needs Redis >= 6
     password: "eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81",

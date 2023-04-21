@@ -1,5 +1,8 @@
 RABBITMQ QUEUES
     news
+    newsAllUnpublished
+    newsAll
+    newsAllRestricted
     newsUpdate
     newsPublish
     newsDelete
@@ -10,16 +13,12 @@ RABBITMQ QUEUES
     commentDelete
     readers
     authors
+    validate_author
     admin
     usersUpdate
     usersBlock
     changePassword
 
 REDIS QUEUES
-   news
-   auth_users_test
-   emails_test
-   unauth_users 
-   auth_users
-   invalid_block
+   all_news
    

@@ -8,7 +8,7 @@ export class DatabaseModel{
     constructor(){
         this._config = {
             user: 'root',
-            host: '172.22.67.77',
+            host: '172.22.169.247',
             database: 'database',
             password: 'root',
             port: 5432,

@@ -1,37 +1,20 @@
-import express from 'express';
-import client, {Connection, Channel, ConsumeMessage} from 'amqplib'
-import { DatabaseModel } from './DatabaseModel';
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+import client, {Channel ,Connection, Message} from 'amqplib'
+import { Product } from './product'
 
-const banco = new DatabaseModel().pool;
-// consumer for the queue.
-// We use currying to give it the channel required to acknowledge the message
-const consumer = (channel: Channel) => async (msg: ConsumeMessage | null): Promise<void> => {
-  try {
-    if (msg) {
-      // Display the received message
-      console.log(msg.content.toString());
-      const noticia = JSON.parse(msg.content.toString());
-      let newsId = parseInt(noticia.id);
-      let userId = parseInt(noticia.userId);
-
-      await banco.query(`INSERT INTO public."Reaction"(reaction, "userId", "newId") VALUES ('${noticia.reaction}',${userId}, ${newsId});`);
-      channel.ack(msg);
-    }
-    else{
-      console.log("vazio")
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const connection: Connection = await client.connect("amqp://guest:guest@172.22.67.77:5672")
+//await productMessage.consumeQueue('news');
+const connection: Connection = await client.connect("amqp://guest:guest@172.22.169.247:5672")
 // Create a channel
-const channel: Channel = await connection.createChannel()
+const channel: Channel = await connection.createChannel();
+
+const productMessage = new Product(channel, connection);
 // Makes the queue available to the client
 await channel.assertQueue('reactions')
-// Start the consumer
-await channel.consume('reactions', consumer(channel));
+// Start the consumer 
+await channel.consume('reactions', async (msg: Message | null) => {   
+    if (msg) {
+      const reaction = JSON.parse(msg.content.toString());
+      reaction.payload.id = parseInt(reaction.payload.id);
+      console.log(msg.content.toString());
+      await productMessage.insertDatabase(reaction.key, reaction.payload);
+    }  
+});
