@@ -1,0 +1,133 @@
+version: '3.4'
+services:
+  ms_admin:
+    container_name: ms_admin
+    image: d3adsec/ms_admin
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.7
+  ms_authors:
+    container_name: ms_authors
+    image: d3adsec/ms_authors
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.8
+  ms_authors_all:
+    container_name: ms_authors_all
+    image: d3adsec/ms_authors_all
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.9
+  ms_comments:
+    container_name: ms_comments
+    image: d3adsec/ms_comments
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.11
+  ms_comments_delete:
+    container_name: ms_comments_delete
+    image: d3adsec/ms_comments_delete
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.12
+  ms_comments_update:
+    container_name: ms_comments_update
+    image: d3adsec/ms_comments_update
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.13
+  ms_news:
+    container_name: ms_news
+    image: d3adsec/ms_news
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.14
+  ms_news_admin:
+    container_name: ms_news_admin
+    image: d3adsec/ms_news_admin
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.15
+  ms_news_all:
+    container_name: ms_news_all
+    image: d3adsec/ms_news_all
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.16
+  ms_news_author:
+    container_name: ms_news_author
+    image: d3adsec/ms_news_author
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.17
+  ms_news_delete:
+    container_name: ms_news_delete
+    image: d3adsec/ms_news_delete
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.18
+  ms_news_details:
+    container_name: ms_news_details
+    image: d3adsec/ms_news_details
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.19
+  ms_news_nickname:
+    container_name: ms_news_nickname
+    image: d3adsec/ms_news_nickname
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.20
+  ms_news_publish:
+    container_name: ms_news_publish
+    image: d3adsec/ms_news_publish
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.21
+  ms_news_update:
+    container_name: ms_news_update
+    image: d3adsec/ms_news_update
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.22
+  ms_reactions:
+    container_name: ms_reactions
+    image: d3adsec/ms_reactions
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.23
+  ms_reactions_update:
+    container_name: ms_reactions_update
+    image: d3adsec/ms_reactions_update
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.24
+  ms_readers:
+    container_name: ms_readers
+    image: d3adsec/ms_readers
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.25
+  ms_user_activate:
+    container_name: ms_user_activate
+    image: d3adsec/ms_user_activate
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.26
+  ms_user_block:
+    container_name: ms_user_block
+    image: d3adsec/ms_user_block
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.27
+  ms_user_update:
+    container_name: ms_user_update
+    image: d3adsec/ms_user_update
+    networks:
+      rede1:
+        ipv4_address: 172.16.238.28
+
+
+
+  
+
