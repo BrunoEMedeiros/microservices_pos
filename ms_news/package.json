@@ -3,7 +3,7 @@
   "name": "ms_news",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "exports": "./index.js",
   "scripts": {
     "start": "tsx ./src/consumer.ts",
     "build": "tsup src"

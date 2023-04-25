@@ -17,5 +17,5 @@ RUN npm install --silent --production
 RUN npm cache clean --force
 COPY --from=builder /usr/src/app/dist ./dist
 
-CMD ["node","dist/server.cjs"]
+CMD ["node","dist/consumer.cjs"]
 

@@ -2,7 +2,8 @@ import client, {Channel ,Connection, Message} from 'amqplib'
 import { Product } from './product'
 
 //await productMessage.consumeQueue('news');
-const connection: Connection = await client.connect("amqp://guest:guest@172.16.238.10:5672")
+async function main(){
+  const connection: Connection = await client.connect("amqp://guest:guest@172.16.238.10:5672")
 // Create a channel
 const channel: Channel = await connection.createChannel();
 
@@ -18,3 +19,5 @@ await channel.consume('reactions', async (msg: Message | null) => {
       await productMessage.insertDatabase(reaction.key, reaction.payload);
     }  
 });
+}
+main();
