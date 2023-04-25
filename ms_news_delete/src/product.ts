@@ -1,5 +1,4 @@
 import client, {Channel ,Connection, ConsumeMessage} from 'amqplib'
-import { Message } from 'amqplib/callback_api'
 import { DatabaseModel } from './DatabaseModel';
 
 const banco = new DatabaseModel().pool;
@@ -27,7 +26,7 @@ export class Product{
 
     async createConnect(){
       try {        
-            this.connection = await client.connect("amqp://guest:guest@172.22.169.247:5672");
+            this.connection = await client.connect("amqp://guest:guest@172.16.238.10:5672");
             this.channel = await this.connection.createChannel();
         } catch (error) {
             console.log("Error to connect rabbitmq!: ", error);
@@ -63,6 +62,12 @@ export class Product{
           await this.channel.assertQueue(key, {durable: false, autoDelete: true});
           resolve(this.channel.sendToQueue(key, Buffer.from(JSON.stringify(msg))))
         });
+
+        await new Promise(async (resolve, reject)=>{
+          await this.channel.assertQueue('newsAll', {durable: true});
+          resolve(this.channel.sendToQueue('newsAll', Buffer.from(JSON.stringify(msg))))
+        });
+        
       } catch (error) {
         console.log("error to update database");
         console.log(error);

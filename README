@@ -13,7 +13,6 @@ RABBITMQ QUEUES
     commentDelete
     readers
     authors
-    validate_author
     admin
     usersUpdate
     usersBlock

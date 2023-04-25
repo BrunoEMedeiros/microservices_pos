@@ -25,7 +25,7 @@ export class Product{
 
     async createConnect(){
       try {        
-            this.connection = await client.connect("amqp://guest:guest@172.22.169.247:5672");
+            this.connection = await client.connect("amqp://guest:guest@172.16.238.10:5672");
             this.channel = await this.connection.createChannel();
         } catch (error) {
             console.log("Error to connect rabbitmq!: ", error);

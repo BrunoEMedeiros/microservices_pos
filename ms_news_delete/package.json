@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "ms_news",
+  "name": "ms_news_delete",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

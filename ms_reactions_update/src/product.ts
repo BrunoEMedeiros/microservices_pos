@@ -1,5 +1,4 @@
 import client, {Channel ,Connection, ConsumeMessage} from 'amqplib'
-import { Message } from 'amqplib/callback_api'
 import { DatabaseModel } from './DatabaseModel';
 
 const banco = new DatabaseModel().pool;
@@ -26,7 +25,7 @@ export class Product{
 
     async createConnect(){
       try {        
-            this.connection = await client.connect("amqp://guest:guest@172.22.169.247:5672");
+            this.connection = await client.connect("amqp://guest:guest@172.16.238.10:5672");
             this.channel = await this.connection.createChannel();
         } catch (error) {
             console.log("Error to connect rabbitmq!: ", error);
