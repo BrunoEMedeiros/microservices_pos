@@ -1,5 +1,4 @@
-import client, {Channel ,Connection, ConsumeMessage} from 'amqplib'
-import { Message } from 'amqplib/callback_api'
+import client, {Channel ,Connection} from 'amqplib'
 import { DatabaseModel } from './DatabaseModel';
 
 const banco = new DatabaseModel().pool;

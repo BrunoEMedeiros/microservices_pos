@@ -1,6 +1,6 @@
 import client, {Channel ,Connection } from 'amqplib'
 import { DatabaseModel } from './DatabaseModel';
-import { redisClient, setRedis } from './redis';
+import { redisClient } from './redis';
 
 const banco = new DatabaseModel().pool;
 
